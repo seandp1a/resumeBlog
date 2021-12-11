@@ -1,7 +1,20 @@
 .nav-link{
   @apply text-gray-300 hover:text-white hover:bg-gray-700 block px-3 py-2 rounded-md text-base sm:text-sm font-medium
 }
-
 .nav-link.active{
   @apply bg-gray-900 text-white
+}
+.nav-home-link{
+  color: var(--usongcolor);
+  @apply font-semibold relative
+}
+.nav-home-link::before {
+  content: "";
+  @apply scale-x-0 absolute block w-full h-[2px] bottom-0 left-0 ;
+  background-color: var(--usongcolor);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.nav-home-link:hover::before {
+  transform: scaleX(1);
 }

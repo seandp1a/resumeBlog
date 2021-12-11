@@ -8,31 +8,31 @@
               <tr>
                 <th scope="col"
                   class="hover:underline px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  <span class="cursor-pointer" (click)="changeSortType('id')">Id
+                  <span class="cursor-pointer select-none" (click)="changeSortType('id')">Id
                     <span *ngIf="sortType==='id'">{{sortReverse?'▼':'▲'}}</span>
                   </span>
                 </th>
                 <th scope="col"
                   class="hover:underline px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  <span class="cursor-pointer" (click)="changeSortType('name')">Name
+                  <span class="cursor-pointer select-none" (click)="changeSortType('name')">Name
                     <span *ngIf="sortType==='name'">{{sortReverse?'▼':'▲'}}</span>
                   </span>
                 </th>
                 <th scope="col"
                   class="hover:underline px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  <span class="cursor-pointer" (click)="changeSortType('email')">Email
+                  <span class="cursor-pointer select-none" (click)="changeSortType('email')">Email
                     <span *ngIf="sortType==='email'">{{sortReverse?'▼':'▲'}}</span>
                   </span>
                 </th>
                 <th scope="col"
                 class="hover:underline px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  <span class="cursor-pointer" (click)="changeSortType('created_at')">Create Time
+                  <span class="cursor-pointer select-none" (click)="changeSortType('created_at')">Create Time
                     <span *ngIf="sortType==='created_at'">{{sortReverse?'▼':'▲'}}</span>
                   </span>
                 </th>
                 <th scope="col"
                 class="hover:underline px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  <span class="cursor-pointer" (click)="changeSortType('email_verified_at')">Verify Time
+                  <span class="cursor-pointer select-none" (click)="changeSortType('email_verified_at')">Verify Time
                     <span *ngIf="sortType==='email_verified_at'">{{sortReverse?'▼':'▲'}}</span>
                   </span>
                 </th>

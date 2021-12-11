@@ -7,3 +7,16 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+.font-segoe-print{
+  font-family:'Segoe Print' ,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.font-noto-sans{
+  font-family: 'Noto Sans TC';
+}
+.font-noto-serify{
+  font-family: 'Noto Serif TC';
+}
+.bg-usong{
+  background-color: var(--usongcolor);
+}
+
