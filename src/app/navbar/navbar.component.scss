@@ -1,0 +1,7 @@
+.nav-link{
+  @apply text-gray-300 hover:text-white hover:bg-gray-700 block px-3 py-2 rounded-md text-base sm:text-sm font-medium
+}
+
+.nav-link.active{
+  @apply bg-gray-900 text-white
+}
