@@ -298,9 +298,10 @@ export class TestComponent implements OnInit {
       "email_verified_at": ""
     }
   ];
-  public sortType: keyof Data = 'id';
-  public sortReverse: boolean = false;
+  public sortType: keyof Data = 'id'; // 紀錄當前使用哪個欄位排序
+  public sortReverse: boolean = false; // true：昇冪　／false：降冪
 
+  // 回傳經排序過後的陣列
   public sortBy(type: keyof Data, reverse: boolean) {
     return this.data.sort((a: Data, b: Data) => {
       if (reverse) {
@@ -311,6 +312,7 @@ export class TestComponent implements OnInit {
     });
   }
 
+  // 切換排序規則&升降冪
   public changeSortType(type: keyof Data) {
     if (this.sortType === type) {
       this.sortReverse = !this.sortReverse;
@@ -320,7 +322,9 @@ export class TestComponent implements OnInit {
     this.sortReverse = false;
   }
 
+
   ngOnInit(): void {
+    console.log(this.data);
   }
 
 }
