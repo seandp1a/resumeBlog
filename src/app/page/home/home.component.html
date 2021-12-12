@@ -1,7 +1,6 @@
 <!-- Overlay Background + Center Control -->
-<div class="h-screen  flex items-end justify-center mt-[-80px] hero-banner">
-  <div class="mx-2 text-center">
-
+<div class="h-screen  flex items-end justify-center lg:mt-[-80px] hero-banner  ">
+  <div class="mb-10 lg-mb-0 mx-2 text-center">
     <img src="assets/LightLog.png" alt="">
     <h1 class=" invisible h-0">
       Usongrat
@@ -22,9 +21,11 @@
 
 <body class="bg-usong w-100">
   <section class="container mx-auto h-screen flex justify-center items-center">
-
-    <div class="bg-[#949B9A] rounded-tl-[100px] rounded-br-[100px] w-8/12 flex flex-col lg:flex-row">
-      <div class="overflow-hidden rounded-tl-[100px] rounded-br-[100px] lg:w-96 lg:ml-[-4rem] lg:mt-[-2rem] lg:mb-[2rem]">
+    <div class="bg-[#949B9A] w-8/12 flex flex-col lg:flex-row
+    rounded-md lg:rounded-tl-[100px] lg:rounded-br-[100px] lg:rounded-tr-[0px] lg:rounded-bl-[0px]">
+      <div
+        class="overflow-hidden lg:w-96 lg:ml-[-4rem] lg:mt-[-2rem] lg:mb-[2rem]
+        rounded-md lg:rounded-tl-[100px] lg:rounded-br-[100px] lg:rounded-tr-[0px] lg:rounded-bl-[0px]">
         <img src="assets/coding.jpg" alt="">
       </div>
       <div class="flex flex-col items-center mx-auto justify-center my-5 lg:my-0">
@@ -36,20 +37,54 @@
           您可以在這裡找到我們的作品集 <br>
           還有一堆我畫的圖 :) <br>
         </p>
-        <div class="flex justify-between my-3">
+        <div class="flex justify-between  flex-col lg:flex-row">
           <button class="text-white rounded-md border-white border-2 px-4 font-segoe-print mx-3 transition duration-300
-           hover:text-violet-500 hover:border-violet-500">
+          hover:text-violet-500 hover:border-violet-500 my-3 lg:my-0 ">
             Front-End <br>
             Sean
           </button>
           <button class="text-white rounded-md border-white border-2 px-4 font-segoe-print mx-3 transition duration-300
-          hover:text-violet-500 hover:border-violet-500">
+          hover:text-violet-500 hover:border-violet-500 my-3 lg:my-0 ">
             Back-End <br>
             Roy
           </button>
         </div>
       </div>
     </div>
+  </section>
 
+  <section class="container mx-auto h-screen flex justify-center items-center ">
+    <div class=" bg-[#949B9A] w-8/12 flex flex-col-reverse lg:flex-row
+    rounded-md lg:rounded-tl-[100px] lg:rounded-br-[100px] lg:rounded-tr-[0px] lg:rounded-bl-[0px] ">
+
+      <div class="flex flex-col items-center mx-auto justify-center my-5 lg:my-0">
+        <h2 class="text-white text-2xl font-segoe-print ">Illustrator</h2>
+        <div class="w-8/12 xl:w-[15rem] border-white border-b-2 my-2 "></div>
+        <p class="text-white font-noto-serify font-thin text-center my-5">
+          若您對我的插畫有興趣 <br>
+          歡迎至我的Instagram看更多 <br>
+          我會不定期更新弱智廢文 <br>
+          出Line貼圖 <br>
+          或是畫畫名人蹭蹭流量
+        </p>
+        <div class="flex justify-center ">
+          <button class="text-white rounded-md border-white border-2  font-segoe-print mx-3 my-3 transition duration-300
+          hover:text-violet-500 hover:border-violet-500 lg:my-0 flex items-center px-2 py-2">
+            <svg class="h-8 w-8 " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+            Usongrat
+          </button>
+        </div>
+      </div>
+      <div
+        class="overflow-hidden lg:w-96 lg:mr-[-4rem] lg:mt-[-2rem] lg:mb-[2rem]
+        rounded-md lg:rounded-tl-[100px] lg:rounded-br-[100px] lg:rounded-tr-[0px] lg:rounded-bl-[0px]">
+        <img src="assets/artwork.jpg" class="object-cover h-[250px] sm:h-96" alt="">
+      </div>
+    </div>
   </section>
 </body>

@@ -1,4 +1,12 @@
 .hero-banner{
+  @media (max-width: 1023px) {
+    background: url('/assets/09.png') center no-repeat;
+    background-size: cover;
+  }
   background: url('/assets/BG.png') center no-repeat;
+  background-size: cover;
+}
+.hero-sm-banner{
+  background: url('/assets/09.png') center no-repeat;
   background-size: cover;
 }
