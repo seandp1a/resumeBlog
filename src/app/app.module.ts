@@ -8,7 +8,7 @@ import { HomeComponent } from './page/home/home.component';
 import { TestComponent } from './page/test/test.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { ConfigService } from './core/config.service';
+import { ConfigService } from './core/config/config.service';
 import { HttpClientModule } from '@angular/common/http';
 
 export const configFactory = (config: ConfigService) => {
