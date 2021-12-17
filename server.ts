@@ -42,9 +42,13 @@ function run(): void {
 
   // Start up the Node server
   const server = app();
-  server.listen(port, () => {
-    console.log(`Node Express server listening on http://localhost:${port}`);
+  server.listen(4000, '127.0.0.1', () => {
+    console.log(`Node Express server listening on http://localhost:4000`);
   });
+  // server.listen(port, () => {
+  //   console.log(`Node Express server listening on http://localhost:${port}`);
+  // });
+  // require('https').createServer(app).listen(port);
 }
 
 // Webpack will replace 'require' with '__webpack_require__'
