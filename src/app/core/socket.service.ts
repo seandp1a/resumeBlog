@@ -1,4 +1,7 @@
+
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import Pusher from 'pusher-js';
 import { Observable } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { io } from 'socket.io-client'
@@ -7,55 +10,56 @@ import { io } from 'socket.io-client'
   providedIn: 'root'
 })
 export class SocketService {
-
-  ws!: WebSocket;
-  constructor() { }
-  public url = 'ws://localhost:8001'
+  pusher:any;
   public channel :any;
-  private socket: any;
+
+  constructor(private http :HttpClient) {
+    this.pusher = new Pusher('roy',{
+      cluster:'mt1',
+      wsHost:'roy.usongrat.tw',
+      wsPort:6001
+    });
+    this.channel = this.pusher.subscribe('EventTriggered')
+  }
+
+
+  getPusher(){
+    return this.pusher;
+  }
+
 
 
   sendMessage(message: any) {
-    this.socket.emit('aaa', message);
+
   }
 
   setNickName(name:string){
-    this.socket.emit('setnickname',name);
+
   }
   setChannel(channel:any){
-    this.socket.emit('join',channel);
-  }
-
-  getMessages(): Observable<any> {
-    return new Observable(observer => {
-      this.socket = io(this.url, { withCredentials: true });
-      this.socket.on('nicknamesuccess', (data:any) => {
-        observer.next(data);
-      });
-      this.socket.on('nicknamefail', (data:any) => {
-        observer.next(data);
-      });
-      this.socket.on('joinroomsuccess', (data:any) => {
-        observer.next(data);
-      });
-      return () => {
-        this.socket.disconnect();
-      }
-    })
-  }
-
-  createObservableSocket(url: string): Observable<any> {
-
-    this.ws = new WebSocket(url)
-    return new Observable(
-      observer => {
-        this.ws.onopen = (event) => observer.next(event)
-        this.ws.onmessage = (event) => observer.next(event)
-        this.ws.onerror = (event) => observer.error(event)
-        this.ws.onclose = (event) => { observer.next(event); observer.complete(); }
-      })
 
   }
+
+  // getMessages(): Observable<any> {
+  //   return new Observable(observer => {
+  //     this.socket = io(this.url, { withCredentials: true });
+  //     this.socket.on('nicknamesuccess', (data:any) => {
+  //       // observer.next(data);
+  //       console.log(data);
+  //     });
+  //     this.socket.on('nicknamefail', (data:any) => {
+  //       observer.next(data);
+  //     });
+  //     this.socket.on('joinroomsuccess', (data:any) => {
+  //       observer.next(data);
+  //     });
+  //     return () => {
+  //       this.socket.disconnect();
+  //     }
+  //   })
+  // }
+
+
   test() {
     const wss = webSocket('wss://localhost:8000');
     wss.subscribe(res => {

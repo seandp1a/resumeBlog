@@ -1,18 +1,38 @@
-<div class="container mx-auto my-8">
+<div class="container mx-auto my-8 px-3">
   <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-        <div class="flex items-center">
-          <button class="rounded-lg bg-slate-600 text-white p-3 hover:bg-slate-800 transition-colors"
-            (click)="connect()">Connect</button>
-          <button class="ml-2 rounded-lg bg-slate-600 text-white p-3 hover:bg-slate-800 transition-colors"
-            (click)="disConnect()">Disconnect</button>
-          <input
-            class="ml-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="myInput" type="text" placeholder="ws: //exampleurl" [(ngModel)]="socketUrl"
-            [attr.disabled]="isConnected?true:null">
-        </div>
 
+      <!-- socket.io -->
+
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <h1>Roy's Pusher Chat Room </h1>
+
+        <div class="flex items-center">
+          <label class="block text-gray-700 text-sm font-bold mr-2" for="myName">Name</label>
+          <input
+            class="my-3 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="myName" type="text" placeholder="NickName" [(ngModel)]="nickName"
+            [attr.disabled]="isNameReady?true:null">
+          <label class="block text-gray-700 text-sm font-bold mx-2" for="myChannel">Channel</label>
+          <select
+            class="form-select appearance-none block w-fit  px-3 py-1.5 text-base  font-normal
+          text-gray-700 bg-white bg-clip-padding bg-no-repeat
+          border border-solid border-gray-300 rounded  transition ease-in-out m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            aria-label="Default select example" [(ngModel)]="channel" name="" id=""
+            [attr.disabled]="(isNameReady&&!isChannelReady)?null:true">
+            <option selected value="0">Choose Channel</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+        <div class="flex">
+          <button class="ml-2 rounded-lg bg-slate-600 text-white p-3 hover:bg-slate-800 transition-colors
+          disabled:bg-gray-200 disabled:hover:bg-gray-200"
+            [attr.disabled]="disableConnect()?true:null">Connect</button>
+          <button
+            class="ml-2 rounded-lg bg-slate-600 text-white p-3 hover:bg-slate-800 transition-colors">Disconnect</button>
+        </div>
         <label class="block text-gray-700 text-sm font-bold mb-2" for="myInput"></label>
         <input
           class="my-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -25,60 +45,6 @@
         <div class="min-w-full divide-y divide-gray-200 h-fit ">
           <div class=" rounded-md w-full bg-gray-600 px-2 py-3 my-3">
             <div class="text-white" *ngFor="let item of msg">
-              {{item}}
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- socket.io -->
-
-      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-        <h1>Socket.io </h1>
-        <div class="flex items-center">
-          <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="myInput" type="text" placeholder="ws: //exampleurl" [(ngModel)]="socketIoUrl"
-            [attr.disabled]="isConnected?true:null">
-        </div>
-        <div class="flex items-center">
-          <label class="block text-gray-700 text-sm font-bold mr-2" for="myName">Name</label>
-          <input
-            class="my-3 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="myName" type="text" placeholder="NickName" [(ngModel)]="nickName">
-          <label class="block text-gray-700 text-sm font-bold mx-2" for="myChannel">Channel</label>
-          <select
-            class="form-select appearance-none block w-fit  px-3 py-1.5 text-base  font-normal
-          text-gray-700 bg-white bg-clip-padding bg-no-repeat
-          border border-solid border-gray-300 rounded  transition ease-in-out m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            aria-label="Default select example" [(ngModel)]="channel" name="" id="">
-            <option selected value="0">Choose Channel</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </div>
-        <div class="flex">
-          <button class="ml-2 rounded-lg bg-slate-600 text-white p-3 hover:bg-slate-800 transition-colors
-          disabled:bg-gray-200 disabled:hover:bg-gray-200"
-            (click)="connectIo()"
-            [attr.disabled]="disableConnect()?true:null" >Connect</button>
-          <button class="ml-2 rounded-lg bg-slate-600 text-white p-3 hover:bg-slate-800 transition-colors"
-            (click)="disconnectIo()">Disconnect</button>
-        </div>
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="myInput"></label>
-        <input
-          class="my-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="myInput" type="text" placeholder="Type something......" [(ngModel)]="inputIoMsg">
-        <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="button" (click)="setNickName()">
-          Send Message
-        </button>
-        <div class="min-w-full divide-y divide-gray-200 h-fit ">
-          <div class=" rounded-md w-full bg-gray-600 px-2 py-3 my-3">
-            <div class="text-white" *ngFor="let item of ioMsg">
               {{item}}
             </div>
           </div>
