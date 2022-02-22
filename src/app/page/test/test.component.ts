@@ -15,32 +15,50 @@ export class TestComponent implements OnInit {
   nickName: string = '';
   channel:  any= 0;
 
-  isNameReady:boolean = true;
+  isNameReady:boolean = false;
   isChannelReady:boolean = false;
   isConnected = false;
 
 
+
   constructor(public socketSvc: SocketService) { }
 
+  public setName(){
+    if(!this.nickName) return;
+    this.isNameReady = true;
+  }
+
+  public selectChannel(){
+    if(Number(this.channel)  === 0){
+      this.isChannelReady = false;
+    }else{
+      this.isChannelReady = true;
+    }
+  }
+
   public connect() {
+    this.isConnected = true;
 
   }
+
+  private resetData(){
+    this.nickName = '';
+    this.channel = '0';
+    this.isNameReady = false;
+    this.isChannelReady = false;
+  }
+
   public disConnect() {
-
+    this.isConnected = false;
+    this.resetData();
   }
+
   public send() {
 
   }
 
-  public disconnectIo() {
-    this.isConnected = false;
-  }
-
   public disableConnect() {
-    const noNickName = this.nickName === '';
-    const noChannel = this.channel === 0;
-    const noUrl = this.socketUrl ==='';
-    return (noChannel||noUrl||noNickName);
+    return (!this.isNameReady||!this.isChannelReady||this.isConnected);
   }
 
 

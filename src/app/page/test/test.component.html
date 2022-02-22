@@ -6,42 +6,40 @@
 
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <h1>Roy's Pusher Chat Room </h1>
-
-        <div class="flex items-center">
-          <label class="block text-gray-700 text-sm font-bold mr-2" for="myName">Name</label>
-          <input
-            class="my-3 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="myName" type="text" placeholder="NickName" [(ngModel)]="nickName"
-            [attr.disabled]="isNameReady?true:null">
-          <label class="block text-gray-700 text-sm font-bold mx-2" for="myChannel">Channel</label>
-          <select
-            class="form-select appearance-none block w-fit  px-3 py-1.5 text-base  font-normal
+        <div class="flex flex-col  md:flex-row">
+          <div class="flex items-center">
+            <label class="block text-gray-700 text-sm font-bold mr-2" for="myName">Name</label>
+            <input
+              class="my-3 shadow w-[10rem] appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="myName" type="text" placeholder="NickName" [(ngModel)]="nickName" maxlength="10"
+              [attr.disabled]="isNameReady?true:null">
+            <button class="ml-2 rounded-lg bg-slate-600 text-white p-1 hover:bg-slate-800 transition-colors
+          disabled:bg-gray-200 disabled:hover:bg-gray-200" (click)="setName()"
+              [attr.disabled]="isNameReady?true:null">Set Name</button>
+          </div>
+          <div class="flex items-center">
+            <label class="block text-gray-700 text-sm font-bold mr-2 md:ml-2" for="myChannel">Channel</label>
+            <select
+              class="form-select shadow appearance-none block w-fit my-3  px-3 py-1.5 text-base  font-normal
           text-gray-700 bg-white bg-clip-padding bg-no-repeat
           border border-solid border-gray-300 rounded  transition ease-in-out m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            aria-label="Default select example" [(ngModel)]="channel" name="" id=""
-            [attr.disabled]="(isNameReady&&!isChannelReady)?null:true">
-            <option selected value="0">Choose Channel</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
+              aria-label="Default select example" [(ngModel)]="channel" name="" id=""
+              [attr.disabled]="(isNameReady&&!isConnected)?null:true" (change)="selectChannel()">
+              <option selected value="0">Choose Channel</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
         </div>
+
         <div class="flex">
           <button class="ml-2 rounded-lg bg-slate-600 text-white p-3 hover:bg-slate-800 transition-colors
-          disabled:bg-gray-200 disabled:hover:bg-gray-200"
+          disabled:bg-gray-200 disabled:hover:bg-gray-200" (click)="connect()"
             [attr.disabled]="disableConnect()?true:null">Connect</button>
-          <button
+          <button (click)="disConnect()"
             class="ml-2 rounded-lg bg-slate-600 text-white p-3 hover:bg-slate-800 transition-colors">Disconnect</button>
         </div>
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="myInput"></label>
-        <input
-          class="my-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="myInput" type="text" placeholder="Type something......" [(ngModel)]="inputMsg">
-        <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="button" (click)="send()">
-          Send Message
-        </button>
         <div class="min-w-full divide-y divide-gray-200 h-fit ">
           <div class=" rounded-md w-full bg-gray-600 px-2 py-3 my-3">
             <div class="text-white" *ngFor="let item of msg">
@@ -49,6 +47,19 @@
             </div>
           </div>
         </div>
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="myInput"></label>
+        <div class="flex items-end flex-col  xs:flex-row xs:items-center">
+          <input
+            class="my-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="myInput" type="text" placeholder="Type something......" [(ngModel)]="inputMsg">
+          <button
+            class=" xs:w-3/12 bg-blue-500 hover:bg-blue-700 text-white  font-bold py-2 px-2 rounded focus:outline-none focus:shadow-outline"
+            type="submit" (click)="send()">
+            Send Message
+          </button>
+        </div>
+
+
 
       </div>
     </div>
