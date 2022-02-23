@@ -12,26 +12,26 @@
               </th>
                 <th scope="col"
                   class="hover:underline px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  <span class="cursor-pointer select-none" (click)="changeSortType('UID')">UId
-                    <span *ngIf="sortType==='UID'">{{sortReverse?'▼':'▲'}}</span>
+                  <span class="cursor-pointer select-none" (click)="changeSortType('uid')">UId
+                    <span *ngIf="sortType==='uid'">{{sortReverse?'▼':'▲'}}</span>
                   </span>
                 </th>
                 <th scope="col"
                   class="hover:underline px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  <span class="cursor-pointer select-none" (click)="changeSortType('count')">COUNT
-                    <span *ngIf="sortType==='count'">{{sortReverse?'▼':'▲'}}</span>
+                  <span class="cursor-pointer select-none" (click)="changeSortType('useCount')">COUNT
+                    <span *ngIf="sortType==='useCount'">{{sortReverse?'▼':'▲'}}</span>
                   </span>
                 </th>
                 <th scope="col"
                   class="hover:underline px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  <span class="cursor-pointer select-none" (click)="changeSortType('stayTime')">StayTime
-                    <span *ngIf="sortType==='stayTime'">{{sortReverse?'▼':'▲'}}</span>
+                  <span class="cursor-pointer select-none" (click)="changeSortType('useTime')">StayTime
+                    <span *ngIf="sortType==='useTime'">{{sortReverse?'▼':'▲'}}</span>
                   </span>
                 </th>
                 <th scope="col"
                 class="hover:underline px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  <span class="cursor-pointer select-none" (click)="changeSortType('openStayTime')">Open StayTime
-                    <span *ngIf="sortType==='openStayTime'">{{sortReverse?'▼':'▲'}}</span>
+                  <span class="cursor-pointer select-none" (click)="changeSortType('openStaytime')">Open StayTime
+                    <span *ngIf="sortType==='openStaytime'">{{sortReverse?'▼':'▲'}}</span>
                   </span>
                 </th>
 
@@ -40,17 +40,17 @@
             <tbody class="bg-white divide-y divide-gray-200">
               <tr *ngFor="let data of sortBy(sortType,sortReverse); let i =index">
                 <td class="px-6 py-4 whitespace-nowrap">{{i+1}}</td>
-                <td class="px-6 py-4 whitespace-nowrap">{{data.UID}}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{data.uid}}</td>
 
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">{{data.count}}</div>
+                  <div class="text-sm text-gray-900">{{data.useCount}}</div>
                   <!-- <div class="text-sm text-gray-500">Optimization</div> -->
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {{data.stayTime}}
+                  {{data.useTime}}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {{data.openStayTime}}
+                  {{data.openStaytime}}
                 </td>
 
 
@@ -63,7 +63,4 @@
       </div>
     </div>
   </div>
-</div>
-<div *ngFor="let item of copyArray">
-  {{item}}
 </div>

@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ConfigService } from './core/config/config.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Test2Component } from './page/test2/test2.component';
 
 export const configFactory = (config: ConfigService) => {
   return () => config.loadConfig();
@@ -21,7 +22,8 @@ export const configFactory = (config: ConfigService) => {
     HomeComponent,
     TestComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    Test2Component
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -1,3 +1,4 @@
+import { map } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -298,22 +299,28 @@ export class TestComponent implements OnInit {
       "email_verified_at": ""
     }
   ];
-  public sortType: keyof Data = 'id'; // 紀錄當前使用哪個欄位排序
+  public excelData: Data2[] = [];
+  public excelOriginData: string[] = ["A12345678;1;10;10","A12345678;1;10;10"];
+  public adminData: Data2[] = []
+  public dataToDisplay: Data2[] = [];
+  public copyArray:string[]=[];
+
+  public sortType: keyof Data2 = 'UID'; // 紀錄當前使用哪個欄位排序
   public sortReverse: boolean = false; // true：昇冪　／false：降冪
 
   // 回傳經排序過後的陣列
-  public sortBy(type: keyof Data, reverse: boolean) {
-    return this.data.sort((a: Data, b: Data) => {
+  public sortBy(type: keyof Data2, reverse: boolean) {
+    return this.dataToDisplay.sort((a: Data2, b: Data2) => {
       if (reverse) {
-        return a[type] > b[type] ? -1 : a[type] === b[type] ? 0 : 1
+        return +a[type] > +b[type] ? -1 : +a[type] === +b[type] ? 0 : 1
       } else {
-        return a[type] > b[type] ? 1 : a[type] === b[type] ? 0 : -1
+        return +a[type] > +b[type] ? 1 : +a[type] === +b[type] ? 0 : -1
       }
     });
   }
 
   // 切換排序規則&升降冪
-  public changeSortType(type: keyof Data) {
+  public changeSortType(type: keyof Data2) {
     if (this.sortType === type) {
       this.sortReverse = !this.sortReverse;
       return;
@@ -322,9 +329,48 @@ export class TestComponent implements OnInit {
     this.sortReverse = false;
   }
 
+  private formatOriginData() {
+    this.excelOriginData.forEach((item) => {
+      const tempArr = item.split(';');
+      const data2Item: Data2 = {
+        UID: tempArr[0],
+        count: +tempArr[1],
+        stayTime: +tempArr[2],
+        openStayTime: +tempArr[3]
+      }
+      this.excelData.push(data2Item);
+    });
+  }
+
+  private processDiff() {
+    let adminMap = this.adminData.reduce((map:countMap,obj)=>{
+      map[obj.UID]=obj;
+      return map;
+    },{});
+    const arrayOfID:string[]=[];
+    this.excelData.forEach((excel)=>{
+      if(adminMap[excel.UID]){
+        const adminCount = adminMap[excel.UID].count
+        if(excel.count!==adminCount){
+
+          this.dataToDisplay.push(excel);
+          this.dataToDisplay.push(adminMap[excel.UID]);
+          // arrayOfID.push((adminMap[excel.UID].openStayTime*60).toString());
+          arrayOfID.push((adminMap[excel.UID].stayTime*60).toString());
+        }
+      }
+
+    });
+    console.log(arrayOfID);
+    this.copyArray = arrayOfID;
+  }
 
   ngOnInit(): void {
     console.log(this.data);
+    this.formatOriginData();
+    this.processDiff();
+    console.log(this.dataToDisplay);
+
   }
 
 }
@@ -337,3 +383,15 @@ export interface Data {
   created_at: string,
   email_verified_at: string
 }
+
+export interface Data2 {
+  UID: string,
+  count: number,
+  stayTime: number,
+  openStayTime: number
+}
+
+export interface countMap{
+  [key: string]:Data2
+}
+
